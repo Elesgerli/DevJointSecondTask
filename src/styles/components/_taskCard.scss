@@ -1,0 +1,154 @@
+@use "../mixins/mixin" as *;
+
+.taskCard {
+
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .05);
+    transition: .3s;
+    cursor: grab;
+
+    &:hover {
+
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+
+    }
+
+    .taskPriority {
+
+        width: fit-content;
+        padding: 6px 12px;
+        border-radius: 30px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        @include text(11px, 600);
+
+        &.yüksək {
+
+            background: #FEE2E2;
+            color: #DC2626;
+
+        }
+
+        &.orta {
+
+            background: #FEF3C7;
+            color: #D97706;
+
+        }
+
+        &.aşağı {
+
+            background: #DCFCE7;
+            color: #16A34A;
+
+        }
+
+    }
+
+    .taskTitle {
+
+        color: #111827;
+        margin-bottom: 8px;
+        @include text(18px, 600);
+
+    }
+
+    .taskCategory {
+
+        color: #6B7280;
+        margin-bottom: 18px;
+        @include text(14px, 400);
+
+    }
+
+    .taskFooter {
+
+        padding-top: 14px;
+        border-top: 1px solid #F3F4F6;
+        @include flex($jcc: space-between);
+
+        .taskDate {
+
+            @include flex($jcc: flex-start);
+            gap: 6px;
+            color: #6B7280;
+            @include text(13px, 500);
+
+            svg {
+
+                font-size: 15px;
+
+            }
+
+        }
+
+        .taskActions {
+
+            @include flex();
+            gap: 8px;
+
+            button {
+
+                width: 34px;
+                height: 34px;
+                border-radius: 10px;
+                @include flex();
+                transition: .3s;
+
+                svg {
+
+                    font-size: 17px;
+
+                }
+
+            }
+
+            .editBtn {
+
+                background: #FFF7ED;
+                color: #F59E0B;
+
+                &:hover {
+
+                    background: #F59E0B;
+                    color: #fff;
+
+                }
+
+            }
+
+            .deleteBtn {
+
+                background: #FEF2F2;
+                color: #EF4444;
+
+                &:hover {
+
+                    background: #EF4444;
+                    color: #fff;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    @include respond(tablet) {
+
+        padding: 14px;
+
+        .taskTitle {
+
+            @include text(16px, 600);
+
+        }
+
+    }
+
+}

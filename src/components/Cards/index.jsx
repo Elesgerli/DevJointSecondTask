@@ -1,6 +1,14 @@
-import React from 'react'
+import React from "react";
+import { useTask } from "../../context/context";
+import TaskCard from "../TaskCard";
 
-const Card = ({ title, count, color }) => {
+const Card = ({ title, color, status }) => {
+
+    const { tasks } = useTask();
+
+    const cardTasks = tasks.filter(
+        task => task.status === status
+    );
 
     return (
 
@@ -21,7 +29,7 @@ const Card = ({ title, count, color }) => {
 
                 <div className="columnCount">
 
-                    {count}
+                    {cardTasks.length}
 
                 </div>
 
@@ -29,17 +37,35 @@ const Card = ({ title, count, color }) => {
 
             <div className="columnBody">
 
-                <div className="emptyTask">
+                {
+                    cardTasks.length === 0 ? (
 
-                    <p>Burada tapşırıq yoxdur</p>
+                        <div className="emptyTask">
 
-                </div>
+                            <p>Burada tapşırıq yoxdur</p>
+
+                        </div>
+
+                    ) : (
+
+                        cardTasks.map((task) => (
+
+                            <TaskCard
+                                key={task.id}
+                                task={task}
+                            />
+
+                        ))
+
+                    )
+                }
 
             </div>
 
         </div>
 
     );
-}
 
-export default Card
+};
+
+export default Card;

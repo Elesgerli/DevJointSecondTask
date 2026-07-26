@@ -11,19 +11,22 @@ const Home = () => {
 
                     <Card
                         title="Gözləmədə"
-                        count={3}
+                    
+                            status="todo"
                         color="#64748B"
                     />
 
                     <Card
                         title="İcra olunur"
-                        count={2}
+                   
+                         status="progress"
                         color="#F59E0B"
                     />
 
                     <Card
                         title="Tamamlandı"
-                        count={1}
+                   
+                           status="done"
                         color="#10B981"
                     />
 

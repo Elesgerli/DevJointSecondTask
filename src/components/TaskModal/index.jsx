@@ -1,8 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
+import { useTask } from '../../context/context';
 
-const TaskModal = ({ open, onClose, isEdit = false }) => {
+const TaskModal = ({ open, onClose, isEdit = false, task }) => {
+
+    const { addTask, editTask } = useTask();
+    const [title, setTitle] = useState(task?.title || "");
+    const [description, setDescription] = useState(task?.description || "");
+    const [priority, setPriority] = useState(task?.priority || "Aşağı");
+    const [status, setStatus] = useState(task?.status || "todo");
+
     if (!open) return null;
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+
+        if (!title.trim()) {
+            alert("Başlıq boş ola bilməz!");
+            return;
+        }
+
+        const taskData = {
+            title: title.trim(),
+            description: description.trim(),
+            priority,
+            status,
+        };
+
+        if (isEdit) {
+
+            editTask({
+                ...task,
+                ...taskData,
+            });
+
+        } else {
+
+            addTask(taskData);
+
+        }
+
+        // Formu sıfırla
+        setTitle("");
+        setDescription("");
+        setPriority("Aşağı");
+        setStatus("todo");
+
+        onClose();
+
+    };
+
     return (
 
         <div className="taskModal">
@@ -37,7 +84,7 @@ const TaskModal = ({ open, onClose, isEdit = false }) => {
 
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
 
                     <div className="formGroup">
 
@@ -46,6 +93,8 @@ const TaskModal = ({ open, onClose, isEdit = false }) => {
                         <input
                             type="text"
                             placeholder="Tapşırığın adını daxil edin..."
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
 
                     </div>
@@ -56,6 +105,8 @@ const TaskModal = ({ open, onClose, isEdit = false }) => {
 
                         <textarea
                             placeholder="Tapşırıq haqqında qısa qeyd..."
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
 
                     </div>
@@ -66,7 +117,10 @@ const TaskModal = ({ open, onClose, isEdit = false }) => {
 
                             <label>Prioritet</label>
 
-                            <select>
+                            <select
+                                value={priority}
+                                onChange={(e) => setPriority(e.target.value)}
+                            >
 
                                 <option>Aşağı</option>
                                 <option>Orta</option>
@@ -80,11 +134,14 @@ const TaskModal = ({ open, onClose, isEdit = false }) => {
 
                             <label>Status</label>
 
-                            <select>
+                            <select
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}
+                            >
 
-                                <option>Gözləmədə</option>
-                                <option>İcra olunur</option>
-                                <option>Tamamlandı</option>
+                                <option value="todo">Gözləmədə</option>
+                                <option value="progress">İcra olunur</option>
+                                <option value="done">Tamamlandı</option>
 
                             </select>
 
@@ -118,6 +175,6 @@ const TaskModal = ({ open, onClose, isEdit = false }) => {
         </div>
 
     );
-}
+};
 
-export default TaskModal
+export default TaskModal;
