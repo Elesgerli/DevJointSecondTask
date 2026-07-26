@@ -1,0 +1,31 @@
+@use "sass:map";
+
+@mixin flex($df: flex, $aic: center, $jcc: center) {
+  display: $df;
+  align-items: $aic;
+  justify-content: $jcc;
+}
+
+
+
+@mixin text($size, $weight, $lineHeight: normal, $style: normal, $spacing: 0) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+  font-style: $style;
+  letter-spacing: $spacing;
+}
+
+$breakpoints: (
+  mobile: 576px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
+@mixin respond($device) {
+  @if map.has-key($breakpoints, $device) {
+    @media (max-width: map.get($breakpoints, $device)) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+
+    list-style: none;
+    font-family: "Poppins", serif;
+    word-wrap: break-word;
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font: inherit;
+}
+
+$container-widths: (
+    desktop:1200px,
+    large:1400px
+);
+
+
+.container {
+    max-width: 100%;
+    width: 100%;
+    padding-inline: 16px;
+    margin-inline: auto;
+
+
+
+    @media(min-width:768px) {
+
+        .container {
+
+            padding-inline: 24px;
+
+        }
+
+    }
+
+    @media(min-width:1024px) {
+
+        .container {
+
+            max-width: 1200px;
+
+        }
+
+    }
+
+}
+
+
+@each $name, $w in $container-widths {
+    @media (min-width: $w) {
+        .container {
+            max-width: $w;
+        }
+    }
+}
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+@mixin generate-cols($prefix: '', $breakpoint: null) {
+    @for $i from 1 through 12 {
+        $width: calc(100% / 12 * $i);
+
+        .#{$prefix}#{$i} {
+            width: #{$width};
+            padding: 16px;
+        }
+    }
+}
+
+@include generate-cols('col-');
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+    @include generate-cols('col-mdd-');
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    @include generate-cols('col-md-');
+}
+
+@media screen and (max-width: 768px) and (min-width: 576px) {
+    @include generate-cols('col-sm-');
+}
+
+@media screen and (max-width: 576px) {
+    @include generate-cols('col-xs-');
+}
