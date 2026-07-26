@@ -11,7 +11,11 @@ const TaskCard = ({ task }) => {
     const { deleteTask } = useTask();
 
     const [editOpen, setEditOpen] = useState(false);
+    const handleDragStart = (e) => {
 
+        e.dataTransfer.setData("taskId", task.id);
+
+    };
     const handleDelete = () => {
 
         const confirmDelete = window.confirm(
@@ -27,7 +31,10 @@ const TaskCard = ({ task }) => {
     return (
         <>
 
-            <div className="taskCard">
+            <div className="taskCard"
+
+                draggable
+                onDragStart={handleDragStart}>
 
                 <div className={`taskPriority ${task.priority.toLowerCase()}`}>
 

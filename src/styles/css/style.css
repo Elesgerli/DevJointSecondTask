@@ -370,6 +370,12 @@ button {
 }
 .column .columnBody {
   min-height: 560px;
+  transition: 0.3s;
+}
+.column .columnBody.dragActive {
+  background: #EEF2FF;
+  border: 2px dashed #5B4DFF;
+  border-radius: 12px;
 }
 .column .columnBody .emptyTask {
   height: 180px;
@@ -555,6 +561,10 @@ button {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   transition: 0.3s;
   cursor: grab;
+  margin-bottom: 8px;
+}
+.taskCard:active {
+  cursor: grabbing;
 }
 .taskCard:hover {
   transform: translateY(-3px);

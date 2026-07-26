@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTask } from "../../context/context";
 import TaskCard from "../TaskCard";
 
 const Card = ({ title, color, status }) => {
 
-    const { tasks } = useTask();
-
+    const { tasks, moveTask } = useTask();
+    const [dragOver, setDragOver] = useState(false);
     const cardTasks = tasks.filter(
         task => task.status === status
     );
+    const handleDrop = (e) => {
 
+        e.preventDefault();
+        const id = e.dataTransfer.getData("taskId");
+        moveTask(id, status);
+        setDragOver(false);
+    };
+    const handleDragOver = (e) => {
+
+        e.preventDefault();
+
+    };
+    const handleDragEnter = () => {
+
+        setDragOver(true);
+
+    };
+    const handleDragLeave = () => {
+
+        setDragOver(false);
+
+    };
     return (
 
         <div className="column">
@@ -35,7 +56,11 @@ const Card = ({ title, color, status }) => {
 
             </div>
 
-            <div className="columnBody">
+            <div className={`columnBody ${dragOver ? "dragActive" : ""}`}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}>
 
                 {
                     cardTasks.length === 0 ? (

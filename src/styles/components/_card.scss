@@ -63,6 +63,17 @@
     .columnBody {
 
         min-height: 560px;
+        transition: .3s;
+
+        &.dragActive {
+
+            background: #EEF2FF;
+
+            border: 2px dashed #5B4DFF;
+
+            border-radius: 12px;
+
+        }
 
         .emptyTask {
 

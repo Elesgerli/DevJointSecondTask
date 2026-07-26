@@ -40,7 +40,6 @@ const TaskModal = ({ open, onClose, isEdit = false, task }) => {
 
         }
 
-        // Formu sıfırla
         setTitle("");
         setDescription("");
         setPriority("Aşağı");

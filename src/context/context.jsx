@@ -62,7 +62,17 @@ export const TaskProvider = ({ children }) => {
         );
 
     };
+    const moveTask = (id, newStatus) => {
 
+        setTasks(prev =>
+            prev.map(task =>
+                task.id === id
+                    ? { ...task, status: newStatus }
+                    : task
+            )
+        );
+
+    };
     return (
 
         <TaskContext.Provider
@@ -70,7 +80,8 @@ export const TaskProvider = ({ children }) => {
                 tasks,
                 addTask,
                 deleteTask,
-                editTask
+                editTask,
+                moveTask
             }}
         >
 
