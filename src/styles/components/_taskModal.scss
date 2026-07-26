@@ -1,0 +1,208 @@
+@use "../mixins/mixin" as *;
+
+.taskModal {
+
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+
+    @include flex();
+
+    .modalOverlay {
+
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, .45);
+        backdrop-filter: blur(6px);
+
+    }
+
+    .modalContent {
+
+        position: relative;
+        width: 520px;
+        background: white;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 25px 60px rgba(0,0,0,.18);
+        animation: modal .25s ease;
+
+        .modalHeader {
+
+            @include flex($jcc:space-between);
+            align-items: flex-start;
+            margin-bottom: 28px;
+
+            h2 {
+
+                @include text(26px,700);
+                color:#111827;
+                margin-bottom:6px;
+
+            }
+
+            p{
+
+                @include text(14px,400);
+                color:#6B7280;
+
+            }
+
+            .closeBtn{
+
+                width:42px;
+                height:42px;
+                border-radius:12px;
+                background:#F3F4F6;
+                @include flex();
+                transition:.3s;
+
+                svg{
+
+                    font-size:22px;
+
+                }
+
+                &:hover{
+
+                    background:#EF4444;
+                    color:white;
+
+                }
+
+            }
+
+        }
+
+        form{
+
+            .formGroup{
+
+                display:flex;
+                flex-direction:column;
+                margin-bottom:20px;
+
+                label{
+
+                    margin-bottom:8px;
+                    @include text(15px,600);
+                    color:#374151;
+
+                }
+
+                input,
+                textarea,
+                select{
+
+                    width:100%;
+                    border:1px solid #E5E7EB;
+                    border-radius:12px;
+                    padding:14px 16px;
+                    outline:none;
+                    transition:.3s;
+                    @include text(15px,400);
+                    &:focus{
+
+                        border-color:#5B4DFF;
+                        box-shadow:0 0 0 4px rgba(91,77,255,.10);
+
+                    }
+
+                }
+
+                textarea{
+
+                    resize:none;
+                    height:120px;
+
+                }
+
+            }
+
+            .formRow{
+
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:16px;
+
+            }
+
+            .modalButtons{
+
+                margin-top:10px;
+                @include flex($jcc:flex-end);
+                gap:12px;
+
+                button{
+
+                    height:46px;
+                    padding:0 24px;
+                    border-radius:12px;
+                    @include text(15px,600);
+                    transition:.3s;
+
+                }
+
+                .cancelBtn{
+
+                    background:#F3F4F6;
+                    color:#374151;
+                    &:hover{
+
+                        background:#E5E7EB;
+
+                    }
+
+                }
+
+                .saveBtn{
+
+                    background:#5B4DFF;
+
+                    color:white;
+
+                    &:hover{
+
+                        background:#4338CA;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    @include respond(tablet){
+
+        .modalContent{
+
+            width:92%;
+
+            .formRow{
+                grid-template-columns:1fr;
+            }
+
+        }
+
+    }
+
+}
+
+@keyframes modal{
+
+    from{
+        opacity:0;
+        transform:translateY(-30px) scale(.95);
+
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+
+    }
+
+}

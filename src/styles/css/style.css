@@ -387,6 +387,165 @@ button {
   letter-spacing: 0;
 }
 
+.taskModal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.taskModal .modalOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+}
+.taskModal .modalContent {
+  position: relative;
+  width: 520px;
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+  animation: modal 0.25s ease;
+}
+.taskModal .modalContent .modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.taskModal .modalContent .modalHeader h2 {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+  color: #111827;
+  margin-bottom: 6px;
+}
+.taskModal .modalContent .modalHeader p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+  color: #6B7280;
+}
+.taskModal .modalContent .modalHeader .closeBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.taskModal .modalContent .modalHeader .closeBtn svg {
+  font-size: 22px;
+}
+.taskModal .modalContent .modalHeader .closeBtn:hover {
+  background: #EF4444;
+  color: white;
+}
+.taskModal .modalContent form .formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.taskModal .modalContent form .formGroup label {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+  color: #374151;
+}
+.taskModal .modalContent form .formGroup input,
+.taskModal .modalContent form .formGroup textarea,
+.taskModal .modalContent form .formGroup select {
+  width: 100%;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 14px 16px;
+  outline: none;
+  transition: 0.3s;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+}
+.taskModal .modalContent form .formGroup input:focus,
+.taskModal .modalContent form .formGroup textarea:focus,
+.taskModal .modalContent form .formGroup select:focus {
+  border-color: #5B4DFF;
+  box-shadow: 0 0 0 4px rgba(91, 77, 255, 0.1);
+}
+.taskModal .modalContent form .formGroup textarea {
+  resize: none;
+  height: 120px;
+}
+.taskModal .modalContent form .formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.taskModal .modalContent form .modalButtons {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.taskModal .modalContent form .modalButtons button {
+  height: 46px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+  transition: 0.3s;
+}
+.taskModal .modalContent form .modalButtons .cancelBtn {
+  background: #F3F4F6;
+  color: #374151;
+}
+.taskModal .modalContent form .modalButtons .cancelBtn:hover {
+  background: #E5E7EB;
+}
+.taskModal .modalContent form .modalButtons .saveBtn {
+  background: #5B4DFF;
+  color: white;
+}
+.taskModal .modalContent form .modalButtons .saveBtn:hover {
+  background: #4338CA;
+}
+@media (max-width: 768px) {
+  .taskModal .modalContent {
+    width: 92%;
+  }
+  .taskModal .modalContent .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 .board {
   padding-bottom: 40px;
 }

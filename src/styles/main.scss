@@ -1,5 +1,6 @@
 @use './abstracts/reset';
 @use './components/card.scss';
+@use './components/taskModal.scss';
 
 @use './pages/home.scss';
 @use './mixins/mixin' as *; 

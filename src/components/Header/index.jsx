@@ -5,6 +5,7 @@ import { MdOutlineLocalFireDepartment } from "react-icons/md";
 import { IoChevronDown } from "react-icons/io5";
 
 import React from 'react'
+import TaskModal from "../TaskModal";
 
 const Header = () => {
   const priorities = [
@@ -14,8 +15,11 @@ const Header = () => {
     "Aşağı",
   ];
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [selected, setSelected] = useState(priorities[0]);
   return (
+  <>
+  
     <header className="header">
       <div className="container">
         <div className="headerWrapper">
@@ -87,7 +91,9 @@ const Header = () => {
 
             </div>
 
-            <button className="headerBtn">
+            <button className="headerBtn" onClick={()=>{
+              setOpen2(true)
+            }}>
               <HiOutlinePlus />
               Yeni Tapşırıq
             </button>
@@ -95,6 +101,11 @@ const Header = () => {
         </div>
       </div>
     </header>
+    <TaskModal
+    open={open2}
+    onClose={() => setOpen2(false)}
+/>
+  </>
   );
 }
 
