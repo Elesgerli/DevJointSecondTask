@@ -1,0 +1,89 @@
+@use "../mixins/mixin" as *;
+
+.column {
+
+    background: #EEF2F7;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    min-height: 650px;
+
+    .columnHeader {
+
+        @include flex($jcc: space-between);
+
+        margin-bottom: 20px;
+
+        .columnTitle {
+
+            @include flex($jcc: flex-start);
+
+            gap: 10px;
+
+            .columnDot {
+
+                width: 12px;
+                height: 12px;
+
+                border-radius: 50%;
+
+            }
+
+            h3 {
+
+                @include text(18px, 600);
+
+                color: #1F2937;
+
+            }
+
+        }
+
+        .columnCount {
+
+            width: 32px;
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #5B4DFF;
+
+            @include flex();
+
+            @include text(15px, 600);
+
+        }
+
+    }
+
+    .columnBody {
+
+        min-height: 560px;
+
+        .emptyTask {
+
+            height: 180px;
+
+            border: 2px dashed #D1D5DB;
+
+            border-radius: 14px;
+
+            @include flex();
+
+            p {
+
+                color: #9CA3AF;
+
+                @include text(15px, 500);
+
+            }
+
+        }
+
+    }
+
+}

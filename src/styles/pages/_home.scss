@@ -1,0 +1,35 @@
+@use "../mixins/mixin" as *;
+
+.board {
+
+    padding-bottom: 40px;
+
+    .boardWrapper {
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+
+    }
+
+    @include respond(desktop) {
+
+        .boardWrapper {
+
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+
+    }
+
+    @include respond(tablet) {
+
+        .boardWrapper {
+
+            grid-template-columns: 1fr;
+
+        }
+
+    }
+
+}

@@ -321,6 +321,91 @@ button {
     padding: 16px;
   }
 }
+.column {
+  background: #EEF2F7;
+  border-radius: 18px;
+  padding: 18px;
+  min-height: 650px;
+}
+.column .columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.column .columnHeader .columnTitle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.column .columnHeader .columnTitle .columnDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.column .columnHeader .columnTitle h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+  color: #1F2937;
+}
+.column .columnHeader .columnCount {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  color: #5B4DFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+}
+.column .columnBody {
+  min-height: 560px;
+}
+.column .columnBody .emptyTask {
+  height: 180px;
+  border: 2px dashed #D1D5DB;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.column .columnBody .emptyTask p {
+  color: #9CA3AF;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+.board {
+  padding-bottom: 40px;
+}
+.board .boardWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1024px) {
+  .board .boardWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .board .boardWrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
 .header {
   padding: 35px 0;
 }
