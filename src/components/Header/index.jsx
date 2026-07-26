@@ -6,106 +6,117 @@ import { IoChevronDown } from "react-icons/io5";
 
 import React from 'react'
 import TaskModal from "../TaskModal";
+import { useTask } from "../../context/context";
 
 const Header = () => {
+
   const priorities = [
     "Bütün prioritetlər",
     "Yüksək",
     "Orta",
     "Aşağı",
   ];
+  const {
+    search,
+    setSearch,
+    priorityFilter,
+    setPriorityFilter
+  } = useTask();
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [selected, setSelected] = useState(priorities[0]);
+  const [selected, setSelected] = useState(priorityFilter);
   return (
-  <>
-  
-    <header className="header">
-      <div className="container">
-        <div className="headerWrapper">
-          <div className="headerLogo">
-            <div className="headerIcon">
-              K
+    <>
+
+      <header className="header">
+        <div className="container">
+          <div className="headerWrapper">
+            <div className="headerLogo">
+              <div className="headerIcon">
+                K
+              </div>
+              <h2 className="headerTitle">
+                Kanban İdarəetmə
+              </h2>
             </div>
-            <h2 className="headerTitle">
-              Kanban İdarəetmə
-            </h2>
-          </div>
-          <div className="headerRight">
-            <div className="headerSearch">
-              <FiSearch />
-              <input
-                type="text"
-                placeholder="Tapşırıq axınında axtar..."
-              />
-            </div>
-            <div className="headerFilter">
+            <div className="headerRight">
+              <div className="headerSearch">
+                <FiSearch />
+                <input
+                  type="text"
+                  placeholder="Tapşırıq axınında axtar..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+              <div className="headerFilter">
 
-              <div
-                className="filterSelected"
-                onClick={() => setOpen(!open)}
-              >
+                <div
+                  className="filterSelected"
+                  onClick={() => setOpen(!open)}
+                >
 
-                <div className="filterLeft">
+                  <div className="filterLeft">
 
-                  <MdOutlineLocalFireDepartment />
+                    <MdOutlineLocalFireDepartment />
 
-                  <span>{selected}</span>
+                    <span>{selected}</span>
+
+                  </div>
+
+                  <IoChevronDown
+                    className={open ? "rotateArrow" : ""}
+                  />
 
                 </div>
 
-                <IoChevronDown
-                  className={open ? "rotateArrow" : ""}
-                />
+                {
+                  open &&
+                  <div className="filterDropdown">
+
+                    {
+                      priorities.map((item) => (
+
+                        <div
+                          key={item}
+                          className={`filterOption ${selected === item ? "activeOption" : ""
+                            }`}
+                          onClick={() => {
+
+                            setSelected(item);
+                               setPriorityFilter(item);
+                            setOpen(false);
+
+                          }}
+                        >
+
+                          {item}
+
+                        </div>
+
+                      ))
+                    }
+
+                  </div>
+                }
 
               </div>
 
-              {
-                open &&
-                <div className="filterDropdown">
-
-                  {
-                    priorities.map((item) => (
-
-                      <div
-                        key={item}
-                        className={`filterOption ${selected === item ? "activeOption" : ""
-                          }`}
-                        onClick={() => {
-
-                          setSelected(item);
-                          setOpen(false);
-
-                        }}
-                      >
-
-                        {item}
-
-                      </div>
-
-                    ))
-                  }
-
-                </div>
-              }
-
+              <button className="headerBtn" onClick={() => {
+                setOpen2(true)
+              }}>
+                <HiOutlinePlus />
+                Yeni Tapşırıq
+              </button>
             </div>
-
-            <button className="headerBtn" onClick={()=>{
-              setOpen2(true)
-            }}>
-              <HiOutlinePlus />
-              Yeni Tapşırıq
-            </button>
           </div>
         </div>
-      </div>
-    </header>
-    <TaskModal
-    open={open2}
-    onClose={() => setOpen2(false)}
-/>
-  </>
+      </header>
+      <TaskModal
+        open={open2}
+        onClose={() => setOpen2(false)}
+      />
+    </>
   );
 }
 

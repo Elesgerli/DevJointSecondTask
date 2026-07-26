@@ -4,11 +4,30 @@ import TaskCard from "../TaskCard";
 
 const Card = ({ title, color, status }) => {
 
-    const { tasks, moveTask } = useTask();
+    const { tasks, moveTask, search,
+        priorityFilter } = useTask();
     const [dragOver, setDragOver] = useState(false);
-    const cardTasks = tasks.filter(
-        task => task.status === status
-    );
+    const cardTasks = tasks.filter((task) => {
+
+        const statusMatch = task.status === status;
+
+        const searchMatch =
+            task.title
+                .toLowerCase().trim()
+                .includes(search.toLowerCase().trim());
+
+        const priorityMatch =
+            priorityFilter === "Bütün prioritetlər"
+                ? true
+                : task.priority === priorityFilter;
+
+        return (
+            statusMatch &&
+            searchMatch &&
+            priorityMatch
+        );
+
+    });
     const handleDrop = (e) => {
 
         e.preventDefault();

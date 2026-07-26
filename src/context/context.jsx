@@ -26,7 +26,8 @@ const saveTasks = (tasks) => {
 export const TaskProvider = ({ children }) => {
 
     const [tasks, setTasks] = useState(loadTasks);
-
+    const [search, setSearch] = useState("");
+    const [priorityFilter, setPriorityFilter] = useState("Bütün prioritetlər");
     useEffect(() => {
         saveTasks(tasks);
     }, [tasks]);
@@ -81,7 +82,11 @@ export const TaskProvider = ({ children }) => {
                 addTask,
                 deleteTask,
                 editTask,
-                moveTask
+                moveTask,
+                search,
+                setSearch,
+                priorityFilter,
+                setPriorityFilter
             }}
         >
 
