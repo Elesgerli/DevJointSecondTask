@@ -904,6 +904,9 @@ button {
   .header .headerRight {
     flex-direction: column;
   }
+  .header .headerRight .headerSearch input {
+    height: 45px;
+  }
   .header .headerRight .headerSearch,
   .header .headerRight .headerFilter,
   .header .headerRight .headerBtn {
@@ -936,7 +939,6 @@ button {
   .header .headerRight {
     gap: 12px;
   }
-  .header .headerRight .headerSearch,
   .header .headerRight .headerFilter,
   .header .headerRight .headerBtn {
     height: 45px;

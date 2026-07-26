@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { useTask } from '../../context/context';
 
@@ -10,7 +10,6 @@ const TaskModal = ({ open, onClose, isEdit = false, task }) => {
     const [priority, setPriority] = useState(task?.priority || "Aşağı");
     const [status, setStatus] = useState(task?.status || "todo");
 
-    if (!open) return null;
     const handleSubmit = (e) => {
 
         e.preventDefault();
@@ -19,7 +18,20 @@ const TaskModal = ({ open, onClose, isEdit = false, task }) => {
             alert("Başlıq boş ola bilməz!");
             return;
         }
+        if (!description.trim()) {
+            alert("Açıqlama boş ola bilməz!");
+            return;
+        }
 
+        if (title.trim().length > 50) {
+            alert("Başlıq maksimum 50 simvol ola bilər!");
+            return;
+        }
+
+        if (description.trim().length > 250) {
+            alert("Açıqlama maksimum 250 simvol ola bilər!");
+            return;
+        }
         const taskData = {
             title: title.trim(),
             description: description.trim(),
@@ -27,17 +39,23 @@ const TaskModal = ({ open, onClose, isEdit = false, task }) => {
             status,
         };
 
+        let success;
+
         if (isEdit) {
 
-            editTask({
+            success = editTask({
                 ...task,
                 ...taskData,
             });
 
         } else {
 
-            addTask(taskData);
+            success = addTask(taskData);
 
+        }
+
+        if (!success) {
+            return;
         }
 
         setTitle("");
@@ -48,6 +66,30 @@ const TaskModal = ({ open, onClose, isEdit = false, task }) => {
         onClose();
 
     };
+    useEffect(() => {
+
+        if (open) {
+
+            if (isEdit && task) {
+
+                setTitle(task.title);
+                setDescription(task.description);
+                setPriority(task.priority);
+                setStatus(task.status);
+
+            } else {
+
+                setTitle("");
+                setDescription("");
+                setPriority("Aşağı");
+                setStatus("todo");
+
+            }
+
+        }
+
+    }, [open, isEdit, task]);
+    if (!open) return null;
 
     return (
 

@@ -270,7 +270,11 @@
         .headerRight {
 
             flex-direction: column;
-
+.headerSearch{
+    input{
+        height: 45px;
+    }
+}
             .headerSearch,
             .headerFilter,
             .headerBtn {
@@ -315,7 +319,6 @@
 
             gap: 12px;
 
-            .headerSearch,
             .headerFilter,
             .headerBtn {
 
